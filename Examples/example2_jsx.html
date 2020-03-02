@@ -34,6 +34,7 @@
         const Hello = (props) => {
 
             // faire une boucle dans le rendu 
+            // Vous êtes obligés d'utiliser le map dans le JSX
             const elems = ['a', 'b', 'c', 'd' ];
 
             // Rendu
@@ -41,10 +42,8 @@
                 <div className="heading" >
                     <h1>{props.message}</h1>
                     <p>{props.subtitle}</p>
-                    {elems.map( elem => {
-
-                        return <p>{elem}</p>
-                    }  )}
+                    {/* key props de react nécessaire pour identifier les éléments dans le DOM*/}
+                    {elems.map( (elem, k) => <p key={k} >{elem}</p>  )}
                     <El text="Hello composant !" />
                 </div>
             )
