@@ -21,12 +21,30 @@
         // création du composant
         const El = (props) => <p>{props.text}</p> ;
 
+        // const utils = () {
+        //     const elems = ['a', 'b', 'c', 'd' ];
+
+        //     for( let e of elems){
+
+        //     }
+
+        // }
+
         // Component
         const Hello = (props) => {
+
+            // faire une boucle dans le rendu 
+            const elems = ['a', 'b', 'c', 'd' ];
+
+            // Rendu
             return (
                 <div className="heading" >
                     <h1>{props.message}</h1>
                     <p>{props.subtitle}</p>
+                    {elems.map( elem => {
+
+                        return <p>{elem}</p>
+                    }  )}
                     <El text="Hello composant !" />
                 </div>
             )
