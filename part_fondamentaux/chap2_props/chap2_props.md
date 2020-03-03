@@ -105,6 +105,48 @@ const POSTS = [
 
 ```
 
+## Exercice composition
+
+à l'aide de la composition et des données suivantes afficher les posts dans le container et les auteurs dans une sidebar.
+
+```txt
+
+-- composant classique avec sa/ses props
+
+<Posts posts={POSTS} />
+
+-- Composition avec props en attribut et en composition
+
+<Container sidebar={AUTHORS}>
+
+    <article>
+        <h1>{this.props.title}</h1>      <---- this.props.children
+        <p>{this.props.content}</p>
+    </article>
+
+</Container>
+```
+
+Les data :
+
+```js
+const POSTS = [
+  {title : "React Introduction" , content : "Un peu de texte"},
+  {title : "React Props" , content : "Un peu de texte sur les props"},
+  {title : "React State" , content : "Un peu de texte sur les states"},
+  {title : "React Event" , content : "Un peu de texte event"},
+  {title : "React Native" , content : "Un peu de texte sur React Native"},
+];
+
+const AUTHORS = [
+  {author : "Alan"},
+  {author : "Alice"},
+  {author : "Bernard"},
+  {author : "Kevin"},
+  {author : "Michel"},
+]
+```
+
 ## 2. Exercice Clock
 
 Pour faire cet exercice dans un fichier ex2_clock.html comme pour l'exercice précédent importez les dépendances React.
