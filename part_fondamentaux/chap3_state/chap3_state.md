@@ -68,6 +68,8 @@ class TestState extends React.Component {
     setInterval(
       () => {
         this.state.count = this.state.count + 1 ;
+
+        this.setState({ count : this.state.count });
         }, 1000
     )
     console.log(this.state.count);
