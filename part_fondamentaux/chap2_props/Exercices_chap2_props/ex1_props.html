@@ -50,14 +50,26 @@
                 <div className="wrapper">
                     <p>Messages ...</p>
                     {this.props.messages.map((m, k) => (
-                        <p key={k}>{m.message}</p>
+                        <Message key={k} message={m.message} />
                     ) )}
                 </div>
             );
         }
     }
-    
-    // TODO
+
+    class Message extends React.Component{
+        constructor(props) {
+            super(props);
+        }
+
+        render(){
+
+            return (
+                <p className="showMessage">{this.props.message}</p>
+            );
+        }
+    }
+
     
     const container = document.getElementById('root');
     
