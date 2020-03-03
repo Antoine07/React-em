@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- compilation JSX => JS -->
+    <script type="text/babel">
+
+    // constante définie dans le script courant donc globale
+    const POSTS = [
+        {title : "React Introduction" , content : "Un peu de texte"},
+        {title : "React Props" , content : "Un peu de texte sur les props"},
+        {title : "React State" , content : "Un peu de texte sur les states"},
+        {title : "React Event" , content : "Un peu de texte event"},
+        {title : "React Native" , content : "Un peu de texte sur React Native"},
+    ];
+
+    class App extends React.Component{
+    
+    	constructor(props) {
+            super(props);
+        }
+    
+    	render(){
+
+        	return (
+                <div className="wrapper">
+                    <Posts posts={POSTS} />
+                </div>
+            );
+        }
+    }
+
+    class Posts extends React.Component{
+    
+        constructor(props) {
+            super(props);
+        }
+
+        render(){
+
+            return (
+                <div className="wrapper">
+                   {this.props.posts.map( (post, k) => (
+                    <article key={k} >
+                        <h1>{post.title}</h1>
+                        <p>{post.content}</p>
+                    </article>
+                   ) )}
+                </div>
+            );
+        }
+    }
+
+    
+    const container = document.getElementById('root');
+    
+    ReactDOM.render(
+    	<App />,
+        container
+    );
+    </script>
+</body>
+</html>

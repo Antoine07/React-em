@@ -73,7 +73,7 @@ Voici pour vous aider la hiérarchie des composants :
 
 **Indications** : créez trois classes dans le même fichier. Utilisez la source ex1_props.html du cours pour commencer. Et n'oubliez pas d'utiliser map pour parcourir les messages et les afficher.
 
-## Exercice
+## Exercice posts
 
 Créez une constantes dans laquelle on écrira 5 posts avec la structure JSON : title : "Un titre", content : "un texte".
 
@@ -87,7 +87,6 @@ const POSTS = [
   {title : "React State" , content : "Un peu de texte sur les states"},
   {title : "React Event" , content : "Un peu de texte event"},
   {title : "React Native" , content : "Un peu de texte sur React Native"},
-
 ];
 
 ```
