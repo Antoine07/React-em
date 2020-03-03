@@ -16,19 +16,38 @@
 
         constructor(props){
             super(props);
+
+            // toLocaleTimeString permet d'avoir une chaîne de caractères
+            // de la date actuelle
+            this.timer = (new Date).toLocaleTimeString()
+
+            // variable locale au constructor
+
+            // const interval = setInterval(() => {
+                
+            //     // React ne réactualisera pas le rendu avec la variable timer
+            //     // il existe une solution que l'on verra plus tard ...
+            //     this.timer = (new Date).toLocaleTimeString();
+            //     console.log(this.timer)
+            // }, 1000);
           
         }
     	render(){
+
+            const timer =  (new Date).toLocaleTimeString() ;
+
         	return (
                 <div>
-                  
+                  {timer}
                 </div>
             );
         }
     }
     
     const container = document.getElementById('root');
-    ReactDOM.render( <Clock />, document.getElementById('root') );
+    setInterval(() => {
+        ReactDOM.render( <Clock />, document.getElementById('root') );
+    }, 1000);
 
     </script>
 </body>
