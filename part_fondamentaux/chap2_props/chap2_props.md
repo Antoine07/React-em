@@ -91,6 +91,20 @@ const POSTS = [
 
 ```
 
+- On a modifié les POSTS, maintenant certains articles ont des auteurs d'autres pas. Affichez le nom de l'auteur si il existe dans votre rendu.
+
+```js
+
+const POSTS = [
+  {title : "React Introduction" , content : "Un peu de texte", author : "Alan"},
+  {title : "React Props" , content : "Un peu de texte sur les props", author : null},
+  {title : "React State" , content : "Un peu de texte sur les states", author : null},
+  {title : "React Event" , content : "Un peu de texte event", author : "Alice"},
+  {title : "React Native" , content : "Un peu de texte sur React Native", author : "Bernard" },
+];
+
+```
+
 ## 2. Exercice Clock
 
 Pour faire cet exercice dans un fichier ex2_clock.html comme pour l'exercice précédent importez les dépendances React.
