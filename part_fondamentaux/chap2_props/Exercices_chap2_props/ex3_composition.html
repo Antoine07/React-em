@@ -48,9 +48,19 @@
         	return (
                 <div className="wrapper">
                    <Container authors={AUTHORS} >
-                        <h1>React Composition</h1>
-                        <p>Un peu de texte</p>
+                       {POSTS.map((post, k)=>(
+                           <div key={k} >
+                            <p >{post.title}</p>
+                            <p>{post.content}</p>
+                           </div>
+                       ))}
                    </Container>
+                   <Footer>
+                        <p>Footer</p>
+                        <ul>
+                            <li>Home</li>
+                        </ul>
+                   </Footer>
                 </div>
             );
         }
@@ -67,7 +77,7 @@
             return (
                 <div className="container">
                    <div className="content">
-                        POSTS PAR COMPOSITION
+                        {this.props.children}
                     </div>
                    <div className="sidebar">
                         {this.props.authors.map( (a, k) => (
@@ -76,6 +86,22 @@
                     </div>
                 </div>
             );
+        }
+    }
+
+    class Footer extends React.Component{
+        constructor(props) {
+            super(props);
+        }
+
+        render(){
+
+            return (
+                <footer>
+                    <h1>Navigation secondaier</h1>
+                    {this.props.children}
+                </footer>
+            )
         }
     }
 
