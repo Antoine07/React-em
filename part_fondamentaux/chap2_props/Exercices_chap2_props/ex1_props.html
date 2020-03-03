@@ -12,6 +12,7 @@
     <!-- compilation JSX => JS -->
     <script type="text/babel">
 
+    // constante définie dans le script courant donc globale
     const MESSAGES = [
         { message : "React JS" },
         { message : "React Native" },
@@ -29,7 +30,7 @@
     	render(){
         	return (
                 <div className="wrapper">
-                    <Messages messages="voici tous mes messages" />
+                    <Messages messages={MESSAGES} />
                 </div>
             );
         }
@@ -42,8 +43,16 @@
         }
 
         render(){
+
+            console.log(this.props.messages);
+
             return (
-                <p>Messages ...</p>
+                <div className="wrapper">
+                    <p>Messages ...</p>
+                    {this.props.messages.map((m, k) => (
+                        <p key={k}>{m.message}</p>
+                    ) )}
+                </div>
             );
         }
     }
