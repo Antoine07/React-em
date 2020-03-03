@@ -73,6 +73,25 @@ Voici pour vous aider la hiérarchie des composants :
 
 **Indications** : créez trois classes dans le même fichier. Utilisez la source ex1_props.html du cours pour commencer. Et n'oubliez pas d'utiliser map pour parcourir les messages et les afficher.
 
+## Exercice
+
+Créez une constantes dans laquelle on écrira 5 posts avec la structure JSON : title : "Un titre", content : "un texte".
+
+Créez un composant App et organisez au mieux l'affichage de ces posts.
+
+```js
+
+const POSTS = [
+  {title : "React Introduction" , content : "Un peu de texte"},
+  {title : "React Props" , content : "Un peu de texte sur les props"},
+  {title : "React State" , content : "Un peu de texte sur les states"},
+  {title : "React Event" , content : "Un peu de texte event"},
+  {title : "React Native" , content : "Un peu de texte sur React Native"},
+
+];
+
+```
+
 ## 2. Exercice Clock
 
 Pour faire cet exercice dans un fichier ex2_clock.html comme pour l'exercice précédent importez les dépendances React.
