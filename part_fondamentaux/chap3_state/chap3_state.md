@@ -93,3 +93,11 @@ ReactDOM.render(
 ## 1. Exercice Clock
 
 Ré-implémentez l'horloge précédente que nous avons vue dans le chaptire sur les props, cette fois utilisez un state pour gérer le temps qui passe (h/m/s).
+
+## 2. Exercice liste de nombres
+
+Créez un compteur en React et affichez tous les nombres pairs dans un composant.
+
+## 3. Exercice liste de nombres
+
+Créez maintenant un compteur qui part de 1 et s'incrément de 1 toutes les 1/2 scondes, puis faites deux composants Odd et Even le premier affichera les nombres pairs et l'autre les nombres impairs.
