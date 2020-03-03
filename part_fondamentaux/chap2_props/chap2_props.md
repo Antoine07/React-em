@@ -107,7 +107,7 @@ const POSTS = [
 
 ## Exercice composition
 
-à l'aide de la composition et des données suivantes afficher les posts dans le container et les auteurs dans une sidebar.
+à l'aide de la composition et des données suivantes afficher les posts dans un div content et les auteurs dans une sidebar.
 
 ```txt
 
@@ -117,7 +117,7 @@ const POSTS = [
 
 -- Composition avec props en attribut et en composition
 
-<Container sidebar={AUTHORS}>
+<Container sidebar={AUTHORS} >
 
     <article>
         <h1>{this.props.title}</h1>      <---- this.props.children
