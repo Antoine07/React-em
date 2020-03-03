@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- compilation JSX => JS -->
+    <script type="text/babel">
+
+    class App extends React.Component{
+    
+    	constructor(props) {
+            super(props);
+        }
+    
+    	render(){
+        	return (
+                <div className="wrapper">
+                   <Container>
+                        <h1>React Composition</h1>
+                        <p>Un peu de texte</p>
+                   </Container>
+                </div>
+            );
+        }
+    }
+
+    class Container extends React.Component{
+    
+        constructor(props) {
+            super(props);
+        }
+
+        render(){
+
+          
+
+            return (
+                <div className="wrapper">
+                    <h1>Un titre</h1>
+                    {this.props.children}
+                </div>
+            );
+        }
+    }
+
+
+    
+    const container = document.getElementById('root');
+    
+    ReactDOM.render(
+    	<App />,
+        container
+    );
+    </script>
+</body>
+</html>
