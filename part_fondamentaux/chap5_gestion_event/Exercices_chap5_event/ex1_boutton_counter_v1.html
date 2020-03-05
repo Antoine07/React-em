@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <style>
+        .heading{
+            color: purple;
+        }
+        .btn_content{
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    const SECOND = 1000;
+
+    class Button extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {
+                count : 0,
+                disabled : false
+            }
+
+            this.interval = null;
+        }
+
+        // Avec la fonction fléchée on a pas d'effet de bord 
+        // le this est celui du contexte donc représente la classe
+        start = () => {
+            this.interval = setInterval(() => {
+                this.setState({ 
+                    count : this.state.count  + this.props.step, 
+                    disabled : true 
+                });
+            }, SECOND);
+        }
+
+        stop = () => {
+            clearInterval(this.interval);
+            this.setState({ disabled : false });
+        }
+
+        reset = () => {
+            this.stop();
+            this.setState({ count : 0 })
+        }
+
+        render(){
+
+
+            // const disabled = this.state.disabled;
+            // const count = this.state.count;
+
+            // destructuring pour assigner les variables dynamiquement au state
+            const { disabled, count } = this.state;
+
+            const step = this.props.step;
+
+            return (
+                <React.Fragment>
+                    <button disabled={disabled} className="btn" onClick={this.start}>start (+{step})</button>
+                    <button disabled={!disabled}  className="btn" onClick={this.stop}>stop</button>
+                    <button disabled={count === 0} className="btn" onClick={this.reset}>reset</button>
+                    <p>{count}</p>
+                </React.Fragment>
+            )
+        }
+    }
+
+    class App extends React.Component {
+
+        render(){
+            return (
+                <div className="containter">
+                    
+                    <Button step={1} />
+                    <Button step={2} />
+
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <App />, 
+        document.getElementById('root')
+    );
+    </script>
+</body>
+
+</html>

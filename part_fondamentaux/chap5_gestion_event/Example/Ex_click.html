@@ -24,8 +24,8 @@
 
         // Avec la fonction fléchée on a pas d'effet de bord 
         // le this est celui du contexte donc représente la classe
-        click = () => {
-            console.log(this.props);
+        click = (e) => {
+            console.log(this.props, e );
         }
 
         render(){
@@ -35,7 +35,7 @@
         }
     }
 
-ReactDOM.render(<Button name="Button" />, document.getElementById('root'))
+    ReactDOM.render(<Button name="Button" />, document.getElementById('root'));
     </script>
 </body>
 
