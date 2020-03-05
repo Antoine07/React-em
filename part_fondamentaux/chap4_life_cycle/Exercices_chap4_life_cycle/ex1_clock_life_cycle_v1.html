@@ -16,27 +16,26 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-    const second = 1000;
+    const SECOND = 1000;
 
     class App extends React.Component{
         constructor(props) {
             super(props);
-            this.state = {show : false};
+            this.state = {
+                start : true
+            }
         }
 
-        componentDidMount() {
-            this.setState({show : true });
-            
+        componentDidMount(){
             setTimeout(() => {
-                this.setState({ show : false });
-            }, 5 * second);
+                this.setState({ start : false });
+            }, SECOND * 2 );
         }
 
         render() {
-            console.log(this.state.show)
             return (
                 <div>
-                   { this.state.show && <Clock /> }
+                  { this.state.start ? <Clock /> : null}
                 </div>
             );
         }
@@ -45,24 +44,34 @@
     class Clock extends React.Component {
         constructor(props) {
             super(props);
-            this.state = {date: new Date()};
-            this.timer = null;
+            this.state = {
+                timer : new Date()
+            }
+
+            this.interval = null;
+            console.log('constructor en premier');
         }
 
-        componentDidMount() {
-            this.timer = setInterval(() => {
-                this.setState({ date : new Date })
-            }, second);
+        componentDidMount(){
+            console.log('mount composant après le constructor');
+            this.start();
         }
 
         componentWillUnmount() {
-            clearInterval(this.timer);
+            clearInterval(this.interval);
+        }
+
+        start(){
+            this.interval = setInterval(() => {
+                this.setState({ timer : new Date }) ;
+                console.log('ici', this.state.timer.toLocaleTimeString())
+            }, SECOND);
         }
 
         render() {
             return (
                 <div>
-                    <h1>Time: {this.state.date.toLocaleTimeString()}</h1>
+                    <h1>Time: {this.state.timer.toLocaleTimeString()} </h1>
                 </div>
             );
         }
