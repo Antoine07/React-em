@@ -97,8 +97,6 @@ Rappelons qu'une fonction fléchée ne possède pas de this. Si vous appelez le 
 class Button extends React.Component{
   constructor(props){
     super(props);
-    // lié la méthode au this de la classe
-    this.click = this.click.bind(this);
   }
 
   // arrow function
