@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading{
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    const SECOND = 1000;
+    class Button extends React.Component{
+        constructor(props){
+            super(props);
+        }
+
+        // Avec la fonction fléchée on a pas d'effet de bord 
+        // le this est celui du contexte donc représente la classe
+        click = () => {
+            console.log(this.props);
+        }
+
+        render(){
+            return (
+            <button name="Hello React" onClick={this.click}>Clike Me !</button>
+            )
+        }
+    }
+
+ReactDOM.render(<Button name="Button" />, document.getElementById('root'))
+    </script>
+</body>
+
+</html>

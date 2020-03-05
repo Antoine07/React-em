@@ -124,5 +124,5 @@ Associez pour chaque compteur un bouton stop qui permet d'arrêter le compteur c
 
 Mettez une propriété **disabled** sur le start et le stop, disabled sera placé sur stop si on n'a pas appuyé sur start et réciproquement.
 
-![Counter](../images/button_counter.png)
+![Counter](images/button_counter.png)
 
