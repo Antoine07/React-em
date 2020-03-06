@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset=“UTF-8” />
     <title>Hello React JSX</title>
@@ -9,8 +10,10 @@
     <script src='https://unpkg.com/react-dom@16/umd/react-dom.development.js'></script>
     <!-- Il faut le compilateur du JSX pour transformer le JSX en JS que le navigateur comprend -->
     <script src='https://unpkg.com/babel-standalone@6.15.0/babel.min.js'></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 </head>
+
 <body>
     <!-- Point d’entrée du montage de l’arbre -->
     <div id="root"></div>
@@ -22,33 +25,78 @@
           constructor(props){
               super(props);
               this.state = {
-
+                email : '',
+                password : '',
+                isAuth : false,
+                message : '',
+                hasError : false
               }
           }
 
-          handleChangeEmail = (e) => {
-         
+          handleChangeEmail = (event) => {
+
+            // destructuration
+            const { value } = event.target;
+            
+            this.setState({
+                email : value
+            });
+            
 
           }
 
           handleChangePassword = (e) => {
-         
+          // destructuration
+          const { value } = event.target;
+            
+            this.setState({
+                password : value
+            });
 
         }
 
           handleSubmit = (e) => {
             //stop le comportement par default
-            e.preventDefault()
+            e.preventDefault();
+
+            const email = 'alan@alan.fr';
+            const password = '1234567890';
+
+            if( email === this.state.email && password === this.state.password ){
+                this.setState({
+                    isAuth : true,
+                    message : 'Hello Alan',
+                    hasError : false
+                });
+            }else{
+                this.setState({
+                    isAuth : false,
+                    message : 'error de connexion',
+                    hasError : true
+                });
+            }
            
           }
 
           render(){
-              const valid = this.state.email && this.state.password;
+
+             if( this.state.isAuth === true ){
+
+                return(
+                    <div className="dashboard">
+                        <p>Dashboard</p>
+                        <p>{this.state.message}</p>
+                    </div>
+                )
+             }else{
 
               return(
                 <div className="container">
                   <div className="row">
                     <div className="col-md-12">
+                    { this.state.isAuth ?  <p>Vous êtes connecté</p> : <p>Vous n'êtes pas connecté</p> }
+                    { this.state.hasError ?  <p>{this.state.message}</p> : null }
+
                       <form onSubmit = {this.handleSubmit} >
                         <div className="form-group">
                             <label htmlFor="email">Email address</label>
@@ -59,25 +107,27 @@
                               className="form-control"
                               placeholder="Enter email"
                             />
-                          </div>
+                            <p>{this.state.email}</p>
+                        </div>
 
                         <div className="form-group">
-                            <label htmlFor="p">Password</label>
+                            <label htmlFor="password">Password</label>
                             <input
+                            type="password"
                             value={this.state.password}
                             onChange={this.handleChangePassword}
                             name="password"
-                            placeholder="Enter email"
+                            placeholder="Enter password"
                             />
                         </div>
-
-                <button type="submit" disabled={!valid}  className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
 
               </form>
             </div>
             </div>
             </div>
             )
+        }
           }
         }
 
@@ -87,4 +137,5 @@
         );
     </script>
 </body>
+
 </html>

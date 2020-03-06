@@ -13,16 +13,16 @@ Dans React la gestion des "mutables" passera ici par un state avec setState pour
 class UserForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: ''};
+    this.state = { value: '' };
   }
 
   handleChange = (event) => {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value});
   }
 
   handleSubmit = (event) => {
-    console.log( `New User : ${this.state.value}`);
     event.preventDefault();
+    console.log( `New User : ${this.state.value}`);
   }
 
   render() {
@@ -31,6 +31,7 @@ class UserForm extends React.Component {
         <label>
           Username:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <p>{this.state.value}</p>
         </label>
         <input type="submit" value="Add" />
       </form>
@@ -74,7 +75,7 @@ En React vous écrirez la syntaxe suivante :
 
 ```js
 // constructor
- this.state = {value: 'devReact'};
+ this.state = { value: e.target.value };
 
  // render
 <select value={this.state.value} onChange={this.handleChange}>
@@ -106,7 +107,7 @@ Vous pouvez cependant utiliser la syntaxe suivante pour contrôler la saisie des
 const fields = { username : '', email : '' };
 
 this.setState(
-  { [name] : {...fields } }
+  { [name] : { ...fields } }
 )
 
 ```
