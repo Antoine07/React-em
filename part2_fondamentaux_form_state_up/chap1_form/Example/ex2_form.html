@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading{
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+    class UserForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { name: '', lastname : '' };
+    }
+
+    handleChange = (e) => {
+
+        const { name, value } = e.target;
+
+        // destructuring à voir plus tard
+        // this.setState({ [name] : value });
+       
+        if( name === 'name' ){
+            this.setState({ 'name' :value });
+        }
+
+        if (name === 'lastname' ){
+            this.setState({ 'lastname' : value });
+        }
+
+    }
+
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        console.log(this.state)
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                Name:
+                <input 
+                    type="text" 
+                    name="name" 
+                    value={this.state.value} 
+                    onChange={this.handleChange} 
+                />
+                </label>
+                <label>
+                Lastname:
+                <input 
+                    type="text" 
+                    name="lastname" 
+                    value={this.state.value} 
+                    onChange={this.handleChange} 
+                />
+                </label>
+                <input type="submit" value="Add" />
+            </form>
+            );
+        }
+    }
+
+    // Rendu dans le DOM
+    ReactDOM.render(
+        <UserForm />,
+        document.getElementById('root')
+    );
+    </script>
+</body>
+</html>
