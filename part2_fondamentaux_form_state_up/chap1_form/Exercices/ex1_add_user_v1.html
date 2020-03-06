@@ -21,29 +21,68 @@ class UserForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { user: '', users : [], message : '' };
+    this.state = { 
+        user: '', 
+        users : [], 
+        message : '' 
+    };
   }
 
   handleChange = (e) => {
+    
+    // e.target  { value : 'tachainedecaractères' }
+    const { value } = e.target;
+
     // React fait un delta (différence) entre son state et ce que vous modifiez
     // DOnc il n'écrase pas les autres valeurs du state si vous changez qu'une par exemple
     this.setState({ 
-        user : e.target.value 
+        user : value,
+        message : ''
     });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.state.users.push(this.state.user);
+    const { user } = this.state;
+
+    if(user.trim() === ''){
+
+        this.setState({
+            message : 'Attention vous devez remplir le champ Username'
+        });
+
+        // sort de la fonction
+        return ;
+    }
+
+    const sanitize = user.trim().split(' ').map( 
+        u  => u[0].toUpperCase() + u.slice(1).toLowerCase() 
+    ).join(' ');
+
+    if( this.state.users.indexOf(sanitize) != -1 ){
+
+        this.setState({
+            message : `Attention l'utilisateur ${sanitize} existe déjà !`
+        });
+
+        // sort de la fonction
+        return ;
+    }
+
+    this.state.users.push( sanitize );
     this.setState({
         users : this.state.users,
-        user : ''
+        user : '',
+        message : 'Merci pour votre ajout'
     });
 
   }
 
   render() {
+
+    // destructuring
+    const { message } = this.state;
 
     return (
       <div className="container">
@@ -53,6 +92,7 @@ class UserForm extends React.Component {
             <input type="text" value={this.state.user} onChange={this.handleChange} />
           </label>
           <input type="submit" value="Add" />
+          { message != '' ? <p className="error">{message}</p> : null }
           {this.state.users.map((user, k) => (
               <User name={user} key={k} />
           ))}
