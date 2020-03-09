@@ -46,8 +46,8 @@
           }
 
           handleChangePassword = (e) => {
-          // destructuration
-          const { value } = event.target;
+          // destructuration { value : 'hello', name : 'lastname',  }
+          const { value, name } = event.target;
             
             this.setState({
                 password : value
@@ -109,7 +109,6 @@
                             />
                             <p>{this.state.email}</p>
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input
@@ -121,7 +120,6 @@
                             />
                         </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
-
               </form>
             </div>
             </div>
