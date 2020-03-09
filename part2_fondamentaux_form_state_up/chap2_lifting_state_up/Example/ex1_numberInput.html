@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello React</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+  <!-- permet de compiler le JSX -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+class BaseNumberInput extends React.Component{
+
+  handleChange = (e) => {
+   
+  }
+
+  render(){
+
+
+    return (
+      <React.Fragment>
+        <p>Change base</p>
+        <input />
+      </React.Fragment>
+    )
+  }
+}
+
+class App extends React.Component{
+
+  constructor(props){
+    super(props);
+  }
+
+  handleChange = (v, b) =>{
+
+    console.log(v, b)
+
+    if( Number.isNaN( parseInt( v ) )  === true  ) { v = '' };
+
+    if ( b === 'binary' ){
+
+      this.setState({
+        binary : v!='' ? parseInt(v, 10).toString(2) : '',
+        decimal : v
+      })
+    }
+
+    if( b === 'decimal' ){
+      this.setState({
+        decimal : v!= '' ? parseInt(v, 2) : '',
+        binary : v
+      })
+    }
+  }
+
+  render(){
+
+    const { decimal, binary } = this.state ;
+
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <BaseNumberInput    />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+
+</script>
+</body>
+</html>
