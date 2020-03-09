@@ -36,20 +36,30 @@ class App extends React.Component{
 
   constructor(props){
     super(props);
+    this.state = {
+      decimal : ''
+    }
   }
 
   handleChange = (v, b) =>{
+    // console.log(v,b);
+    this.setState({ decimal : v });
 
+    // Changement de base
   }
 
   render(){
+
+    const { decimal } = this.state ;
 
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-12">
+            <p>{decimal}</p>
             <BaseNumberInput onChangeBase={ (v) => {
-              console.log('Parent', v);
+              // console.log('Parent', v);
+              this.handleChange(v, 'b');
             }}   />
           </div>
         </div>
