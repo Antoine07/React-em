@@ -45,29 +45,9 @@ class App extends React.Component{
 
   handleChange = (v, b) =>{
 
-    console.log(v, b)
-
-    if( Number.isNaN( parseInt( v ) )  === true  ) { v = '' };
-
-    if ( b === 'binary' ){
-
-      this.setState({
-        binary : v!='' ? parseInt(v, 10).toString(2) : '',
-        decimal : v
-      })
-    }
-
-    if( b === 'decimal' ){
-      this.setState({
-        decimal : v!= '' ? parseInt(v, 2) : '',
-        binary : v
-      })
-    }
   }
 
   render(){
-
-    const { decimal, binary } = this.state ;
 
     return (
       <div className="container">
