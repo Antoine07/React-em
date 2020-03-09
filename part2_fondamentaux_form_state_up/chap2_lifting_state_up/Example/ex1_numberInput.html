@@ -37,26 +37,29 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      decimal : ''
+      decimal : '',
+      binary : ''
     }
   }
 
   handleChange = (v, b) =>{
     // console.log(v,b);
-    this.setState({ decimal : v });
 
+    // if( isNaN(parseInt(v)) == true ) return ;
+    
+    this.setState({ decimal : v, binary : parseInt(v, 10).toString(2)  });
     // Changement de base
   }
 
   render(){
 
-    const { decimal } = this.state ;
+    const { decimal, binary } = this.state ;
 
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <p>{decimal}</p>
+            <p>Decimal : {decimal}, Binary : {binary}</p>
             <BaseNumberInput onChangeBase={ (v) => {
               // console.log('Parent', v);
               this.handleChange(v, 'b');
