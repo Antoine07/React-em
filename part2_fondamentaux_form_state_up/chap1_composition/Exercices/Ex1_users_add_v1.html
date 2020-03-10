@@ -68,11 +68,12 @@
                 this.setState({ user : value });
             }
 
-            handleClick = (e) => {
+            handleSubmit = (e) => {
+                e.preventDefault();
 
                 const { user, users } = this.state;
 
-                const search = users.filter( u => u.name.toLowserCase() == user.toLowserCase() ) ;
+                const search = users.filter( u => u.name.toLowerCase() == user.toLowerCase() ) ;
 
                 if(user.trim() == ''){
 
@@ -108,13 +109,15 @@
 
                 return (
                     <Dashboard >
+                        <form onSubmit={this.handleSubmit} >
+                            {message != '' ? <p>{message}</p> : null }
                         <p>
                         <input value={user} onChange={this.handleChange} />
                         </p>
                         <p>
                             <button onClick={this.handleClick}>Add</button>
                         </p>
-                        {message != '' ? <p>{message}</p> : null }
+                        </form>
                         <ul>
                         {users.map((user, k) =>(
                                 <li key={k}> numero : {k+1} Name {user.name}, id : {user.id}</li>
