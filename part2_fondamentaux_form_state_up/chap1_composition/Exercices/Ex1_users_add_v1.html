@@ -57,7 +57,8 @@
                 super(props);
                 this.state = {
                     user : '',
-                    users : USERS
+                    users : USERS,
+                    message : ''
                 }
                
             }
@@ -68,16 +69,42 @@
             }
 
             handleClick = (e) => {
+
+                const { user, users } = this.state;
+
+                const search = users.filter( u => u.name.toLowserCase() == user.toLowserCase() ) ;
+
+                if(user.trim() == ''){
+
+                    this.setState({
+                        message : `Le champ user doit-être renseigné !`,
+                        user : ''
+                    });
+
+                    return;
+                }
+
+                if( search.length > 0 ){
+
+                    this.setState({
+                        message : `L'utilisateur : ${user} est déjà dans la liste`,
+                        user : ''
+                    });
+
+
+                    return;
+                }
+
                 this.state.users.push({
                     id : Math.random().toString(16),
-                    name : this.state.user
+                    name : user
                 })
                 this.setState({ users : this.state.users, user : '' });
             }
 
             render(){
 
-                const { user, users } = this.state;
+                const { user, users, message } = this.state;
 
                 return (
                     <Dashboard >
@@ -87,11 +114,12 @@
                         <p>
                             <button onClick={this.handleClick}>Add</button>
                         </p>
+                        {message != '' ? <p>{message}</p> : null }
                         <ul>
-                       {users.map((user, k) =>(
-                            <li key={k}> numero : {k+1} Name {user.name}, id : {user.id}</li>
-                       ))}
-                       </ul>
+                        {users.map((user, k) =>(
+                                <li key={k}> numero : {k+1} Name {user.name}, id : {user.id}</li>
+                        ))}
+                        </ul>
                     </Dashboard>
                 );
             }
