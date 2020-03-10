@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- permet de compiler le JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading{
+            color: purple;
+        }
+    </style>
+</head>
+        <body>
+        <div id="root"></div>
+        <script type="text/babel">
+
+        // Base de données
+        const USERS = [
+            { id : 1, name : "Alice" },
+            { id : 2, name : "Alan"  },
+            { id : 3, name : "Phil" },
+            { id : 4, name : "Naoudi" },
+            { id : 5, name : "Fenley" },
+        ];
+
+        class User extends React.Component {
+
+            render() {
+
+                return (
+                    <li>id : {this.props.id} Name : {this.props.name}</li>
+                );
+            }
+        }
+
+        class Dashboard extends React.Component{
+
+            render(){
+
+                return (
+                    <div className="dashboard">
+                        <h1>Dashboard</h1>
+                        {this.props.children}
+                    </div>
+                )
+            }
+            
+        }
+
+        class App extends React.Component{
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    user : '',
+                    users : USERS
+                }
+               
+            }
+
+            handleChange = (e) => {
+                const { value } = e.target;
+                this.setState({ user : value });
+            }
+
+            handleClick = (e) => {
+                this.state.users.push({
+                    id : Math.random().toString(16),
+                    name : this.state.user
+                })
+                this.setState({ users : this.state.users, user : '' });
+            }
+
+            render(){
+
+                const { user, users } = this.state;
+
+                return (
+                    <Dashboard >
+                        <p>
+                        <input value={user} onChange={this.handleChange} />
+                        </p>
+                        <p>
+                            <button onClick={this.handleClick}>Add</button>
+                        </p>
+                        <ul>
+                       {users.map((user, k) =>(
+                            <li key={k}> numero : {k+1} Name {user.name}, id : {user.id}</li>
+                       ))}
+                       </ul>
+                    </Dashboard>
+                );
+            }
+        }
+
+        ReactDOM.render(
+        <App />,
+        document.getElementById('root')
+        );
+
+        </script>
+</body>
+</html>
