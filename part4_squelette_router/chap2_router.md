@@ -159,6 +159,28 @@ return (
 
 ```
 
+## Exercice avec des posts
+
+Créez une application blog.
+
+```js
+
+const POSTS = [
+  { id: 16, title: "React JS", content: "Libraire ou Framework ?" },
+  { id: 11, title: "React Native", content: "Mobile React" },
+  { id: 100, title: "Angular", content: "Super ..." },
+  { id: 7, title: "Symfony", content: "Framework expressif ..." },
+  { id: 27, title: "MongoDB", content: "Base de données NoSQL" },
+];
+
+```
+
+- Créez une page d'accueil avec un texte de votre choix.
+
+- Créez un lien qui affiche tous les titres des posts
+
+- Chaque titre de post est cliquable. Un lien de ce type affichera le titre et le contenu de l'article.
+
 ## Exercice private routes & posts
 
 Créez un squelette d'application private-posts sur votre machine.
