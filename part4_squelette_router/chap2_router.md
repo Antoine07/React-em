@@ -175,9 +175,11 @@ const POSTS = [
 
 ```
 
+- Créez un menu de navigation. Dans lequel on a les items suivants : Home et les articles. Ils sont cliquables voyez ce qui suit :
+
 - Créez une page d'accueil avec un texte de votre choix.
 
-- Créez un lien qui affiche tous les titres des posts
+- Créez un lien qui affiche tous les titres des posts.
 
 - Chaque titre de post est cliquable. Un lien de ce type affichera le titre et le contenu de l'article.
 
