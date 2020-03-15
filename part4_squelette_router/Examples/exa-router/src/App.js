@@ -3,12 +3,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 import './App.css';
 import Home from './Home';  
 import Post from './Post';
+
+const isLogged = false;
 
 class App extends Component {
 
@@ -28,6 +31,7 @@ class App extends Component {
             <li><Link to="/posts">Les articles</Link></li>
             <li><Link to="/post/1">React présentation</Link></li>
             <li><Link to="/post/2">React les fondamentaux</Link></li>
+            <li><Link to="/protected">Protected</Link></li>
           </ul>
           <Switch>
             <Route exact path="/">
@@ -44,8 +48,21 @@ class App extends Component {
             */}
             <Route exact path="/post/:id" component={ Post } />
 
+            {/* Une route avec une redirection */}
             <Route 
-              render={() => }
+              path="/protected"
+              render={ (props) => {
+
+                if( isLogged )
+                  return (
+                    <p>Dashboard</p>
+                  );
+                  
+                // On est redirigé vers la page Home sinon
+                return (
+                  <Redirect to="/" />
+                );
+              }}
             />
 
             {/** gestiond de la page 404 */}

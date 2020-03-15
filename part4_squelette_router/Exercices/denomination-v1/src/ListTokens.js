@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 
 class ListTokens extends Component {
 
-  tokens = () => {
-    const { changes } = this.props;
-
-  }
-
   render() {
 
     const { changes } = this.props;
